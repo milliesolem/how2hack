@@ -73,25 +73,35 @@ RainbowCrack: https://project-rainbowcrack.com/ (Use this if the hash isn't salt
 (If the hash cannot be cracked, try "pass the hash", or look up vulnerabilities in the hashing-algorithm. Ideally try this first, might save you time and eletricity :P)  
   
 ## Crypto  
-### Modern cryptorgaphy (Basically anything that's an acronym)  
+### Modern cryptography (Basically anything that's an acronym)  
+
+#### General
 SageMath: https://www.sagemath.org/  
 PyCryptodome: https://pycryptodome.readthedocs.io/en/latest/  
 z3-solver: https://pypi.org/project/z3-solver/  
 gmpy2 : https://pypi.org/project/gmpy2/  
+FeatherDuster: https://github.com/nccgroup/featherduster  
 OpenSSL: https://www.openssl.org/  
 PGPDump: https://github.com/kazu-yamamoto/pgpdump (Extract data from an OpenPGP-key)  
   
 #### Asymmetric (RSA, ECC, Diffie-Hellman, etc.)  
-RSACtfTool: https://github.com/Ganapati/RsaCtfTool  
+RSACtfTool: https://github.com/Ganapati/RsaCtfTool (Collection of scripts implementing various attacks on RSA)  
 FactorDB: https://factordb.com/ (Prime number database, check if a number is prime or if it has known factors)  
 Diffie-Hellman Backdoor: https://github.com/mimoo/Diffie-Hellman_Backdoor  
   
 #### Hashing  
-HashPump: https://github.com/bwall/HashPump  
+HashPump: https://github.com/bwall/HashPump (Automated tool for performing length-extention attacks on hashes, useful for forging poorly implemented HMACs)  
+HashExtender: https://github.com/iagox86/hash_extender (Same as HashPump, but different tool)
   
-#### OTP and Stream ciphers (like AES-CTR)  
-MTP: https://github.com/CameronLonsdale/MTP  
-  
+#### XOR/OTP/Stream ciphers (like AES-CTR or RC4)  
+MTP: https://github.com/CameronLonsdale/MTP (If a stream is used more than once, you may be able to guess the plaintext from multiple samples)  
+
+#### Password-protected Zip-files
+Context: Zip-files encrypted using ZipCrypto for PKZip are vulnerable to the Kocher-Biham known plaintext attack. Several tools have been made to exploit this vulnerability which can crack the file easily regardless of password strength, and it only requires that you know some of the contents of the zip archive, even as little as a few bytes. To check the encryption method, run the bash command `7z l -slt /path/to/file.zip` and check the `Method` field; if it says something like `ZipCrypto Deflate`, it is vulnerable. Otherwise, check the Hash-cracking section for password cracking tools and wordlists  
+
+PkCrack: https://www.unix-ag.uni-kl.de/~conrad/krypto/pkcrack.html  
+bkcrack: https://github.com/kimci86/bkcrack  
+
 ### Classical cryptography (Rot13, Vigenere, transposition ciphers, etc.)  
 CyberChef: https://gchq.github.io/CyberChef/  
 DCode: https://www.dcode.fr/  
@@ -103,21 +113,23 @@ Chepy: https://github.com/securisec/chepy
 ## Pwn/RE  
   
 ### General  
-Frida: https://frida.re/  
+Frida: https://frida.re/ (Really powerful dynamic analysis tool)
   
 ### Low-level/Binaries  
-GDB Peda: https://github.com/longld/peda  
-Ltrace: https://en.wikipedia.org/wiki/Ltrace  
-Strace: https://en.wikipedia.org/wiki/Strace  
-Ghidra: https://github.com/NationalSecurityAgency/ghidra/releases  
-IDA Pro: https://hex-rays.com/ida-pro/  
-Radare2: https://rada.re/n/  
-Cutter: https://cutter.re/  
-Angr: https://angr.io/  
+PwnTools: https://github.com/Gallopsled/pwntools (Python framework for writing binary exploits, this one is a must-have)  
+GDB Peda: https://github.com/longld/peda (GDB, but with pretty colors and more stuff i guess)  
+Ltrace: https://en.wikipedia.org/wiki/Ltrace (tracks the libcalls of a binary)  
+Strace: https://en.wikipedia.org/wiki/Strace (tracks the syscalls of a binary)  
+Ghidra: https://github.com/NationalSecurityAgency/ghidra/releases (Decompiler)  
+IDA Pro: https://hex-rays.com/ida-pro/ (Decompiler)  
+Radare2: https://rada.re/n/ (Decompiler)  
+Cutter: https://cutter.re/ (Decompiler)  
+Angr: https://angr.io/ (General-purpose binary analysis tool)  
+One_gadget: https://github.com/david942j/one_gadget (Nice for finding shell-gadgets)  
   
 ### Java/Android  
 Java Decompiler: http://java-decompiler.github.io/  
-dex2jar: https://github.com/pxb1988/dex2jar  
+dex2jar: https://github.com/pxb1988/dex2jar (Converts `.apk` and `.dex` files to `.jar`, which makes them easier to reverse)  
 jadx: https://github.com/skylot/jadx  
 Android Studio: https://developer.android.com/studio (The AVD emulator is especially useful for dynamic analysis)  
   
@@ -126,29 +138,29 @@ Uncompyle6: https://pypi.org/project/uncompyle6/
   
 ## Enum/recon  
 Nmap: https://nmap.org/  
-Dirbuster: https://www.kali.org/tools/dirbuster/  
-Certificate Search: https://crt.sh/  
-PEASS (winpeas og linpeas): https://github.com/carlospolop/PEASS-ng  
-Low-Hanging Fruit: https://github.com/blindfuzzy/LHF  
+Dirbuster: https://www.kali.org/tools/dirbuster/ (Bruteforce directories on websites)  
+Certificate Search: https://crt.sh/ (SSL-certificates might give you insight into subdomains on the website)  
+PEASS (winpeas og linpeas): https://github.com/carlospolop/PEASS-ng (Scans the machine for privilege escalation vectors)  
+Low-Hanging Fruit: https://github.com/blindfuzzy/LHF (Scans the machine for attack vectors)  
 WPScan: https://wpscan.com/wordpress-security-scanner  
 (protip: run `sudo -l` if you have foothold on a UNIX-system (linux/mac), this may give you an indicator for potential vectors for local privilidge escalation, as it lists executables and scripts you may run as root using sudo)  
   
 ## Exploitation  
 Metasploit: https://www.metasploit.com/ (This tool is pre-installed on Kali, and comes with thousands of exploits for a wide range of known vulnerabities)  
-GTFOBins: https://gtfobins.github.io/  
+GTFOBins: https://gtfobins.github.io/ (Useful resource for privilege escalation)  
 Reverse Shell Generator: https://www.revshells.com/  
   
 ## OSINT  
   
 ### General  
-OSINT Framework: https://osintframework.com/  
+OSINT Framework: https://osintframework.com/ (Large collection of OSINT tools and resources)  
 Recon-ng: https://github.com/lanmaster53/recon-ng  
   
 ### People finding  
 Whitepages: https://www.whitepages.com/  
-GHunt: https://github.com/mxrch/GHunt  
+GHunt: https://github.com/mxrch/GHunt (Enumerates Google accounts)  
 Sherlock: https://github.com/sherlock-project/sherlock  
-Namechk: https://namechk.com/  
+Namechk: https://namechk.com/ (Check if a username is used on other websites)  
 That's Them: https://thatsthem.com/  
 PimEyes: https://pimeyes.com/en (Allows you to identify people in photos, works terrifyingly well)  
   
@@ -158,4 +170,4 @@ Spiderfoot: https://www.spiderfoot.net/
   
 ### Misc  
 Shodan: https://www.shodan.io/ (Allows you to look up severs online)  
-SunCalc: http://suncalc.net/ (Use the power of the sun to find out where and when a photo is taken)  
+SunCalc: http://suncalc.net/ (Use the power of the sun to find out where and when a photo was taken)  
