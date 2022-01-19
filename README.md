@@ -2,7 +2,7 @@
 List of learning resources, learning/challenge sites, and tools useful for CTF and cybersecurity in general. Please use this knowledge responsibly :)  
   
 ## Challenge sites  
-Challenge are websites where you can practice your hacking knowledge in a controlled environment by solving challenges and penetrating machines with vulnerabilities on them. They are a fun and interactive way to learn, and are usually open 24/7 with no time limit.  
+Challenge sites are websites where you can practice your hacking knowledge in a controlled environment by solving challenges and penetrating machines with vulnerabilities on them. They are a fun and interactive way to learn, and are usually open 24/7 with no time limit.  
   
 ### General  
 Hack The Box: https://www.hackthebox.eu/  
@@ -19,6 +19,7 @@ Portswigger Labs: https://portswigger.net/web-security/all-labs
 ### Pwn  
 Pwn.college: https://pwn.college/  
 Nightmare: https://guyinatuxedo.github.io/  
+ROP Emporium: https://ropemporium.com/
   
 ### Crypto  
 Cryptohack: https://cryptohack.org/  
